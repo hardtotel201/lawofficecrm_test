@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lj.mapper.lawcase.FileTemplateMapper">
+
+  <select id="findAll" resultType="FileTemplate">
+    select * from FileTemplate
+  </select>
+  
+  <select id="findAllByRequestObj" parameterType="FileTemplate" resultType="FileTemplate">
+    select FileTemplate.*
+    from FileTemplate
+    where 1=1
+  </select>
+ 
+  <select id="findAllPaged" parameterType="FileTemplate" resultType="FileTemplate">
+    select FileTemplate.*,UserInfo.userName as opUserName
+    from FileTemplate
+    left join UserInfo on UserInfo.userId=FileTemplate.opUserId
+    where 1=1
+    <if test=" templateName!=null and templateName!='' ">
+      and FileTemplate.templateName  like '%${templateName}%'
+    </if>
+    <if test=" templateCategory!=null and templateCategory!='' ">
+      and FileTemplate.templateCategory   like '%${templateCategory}%'
+    </if>
+    order by ${sortField} ${sortType}
+  </select>
+  
+  <select id="findById" parameterType="Long" resultType="FileTemplate">
+    select * from FileTemplate where  fileTemplateId=#{id}
+  </select>
+  
+  <select id="findAllByField" parameterType="Map" resultType="FileTemplate">
+    select * from FileTemplate where ${fieldName}=#{fieldValue}
+  </select>
+ 
+  <insert id="insert" parameterType="FileTemplate" flushCache="true" useGeneratedKeys="true" keyProperty="fileTemplateId" >
+      insert into FileTemplate( templateName, templateCategory, fileName, opTime, opUserId)
+      values(#{templateName,jdbcType=VARCHAR},#{templateCategory,jdbcType=VARCHAR},#{fileName,jdbcType=VARCHAR},#{opTime,jdbcType=TIMESTAMP},#{opUserId,jdbcType=NUMERIC})
+  </insert>
+  
+   <update id="update" parameterType="FileTemplate" >
+     update FileTemplate 
+     set  templateName=#{templateName,jdbcType=VARCHAR},  templateCategory=#{templateCategory,jdbcType=VARCHAR},  fileName=#{fileName,jdbcType=VARCHAR},  opTime=#{opTime,jdbcType=TIMESTAMP},  opUserId=#{opUserId,jdbcType=NUMERIC} 
+     where fileTemplateId=#{fileTemplateId}
+  </update>
+  
+  <delete id="deleteById" parameterType="long">
+      delete from FileTemplate where fileTemplateId=#{id}
+  </delete>
+  
+</mapper>

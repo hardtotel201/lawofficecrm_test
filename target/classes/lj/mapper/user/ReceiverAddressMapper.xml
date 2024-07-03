@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lj.mapper.user.ReceiverAddressMapper">
+
+  <select id="findAll" resultType="ReceiverAddress">
+    select * from ReceiverAddress where ReceiverAddress.addressState='正常'
+  </select>
+  
+  <select id="findAllByUserId" parameterType="Long" resultType="ReceiverAddress">
+    select ReceiverAddress.*,
+           UserInfo.userName,
+           SchoolAddress.addressName as schoolAddress,
+           SchoolInfo.SchoolId,SchoolInfo.schoolName
+    from ReceiverAddress
+    left join UserInfo      on UserInfo.userId=ReceiverAddress.userId
+    left join SchoolAddress on SchoolAddress.schoolAddressId=ReceiverAddress.schoolAddressId
+    left join SchoolInfo    on SchoolInfo.schoolId=SchoolAddress.schoolId
+    where ReceiverAddress.userId=#{value} and ReceiverAddress.addressState='正常'
+    order by ReceiverAddress.isDefault desc
+  </select>
+  
+  <select id="findAllBySchoolAddressId" parameterType="Long" resultType="ReceiverAddress">
+    select ReceiverAddress.*,
+           UserInfo.userName,
+           SchoolAddress.addressName as schoolAddress,
+           SchoolInfo.SchoolId,SchoolInfo.schoolName
+    from ReceiverAddress
+    left join UserInfo      on UserInfo.userId=ReceiverAddress.userId
+    left join SchoolAddress on SchoolAddress.schoolAddressId=ReceiverAddress.schoolAddressId
+    left join SchoolInfo    on SchoolInfo.schoolId=SchoolAddress.schoolId
+    where ReceiverAddress.schoolAddressId=#{value}
+  </select>
+  
+  <select id="findAllDefaultByUserId" parameterType="Long" resultType="ReceiverAddress">
+   select ReceiverAddress.*,
+           UserInfo.userName,
+           SchoolAddress.addressName as schoolAddress,
+           SchoolInfo.SchoolId,SchoolInfo.schoolName
+    from ReceiverAddress
+    left join UserInfo      on UserInfo.userId=ReceiverAddress.userId
+    left join SchoolAddress on SchoolAddress.schoolAddressId=ReceiverAddress.schoolAddressId
+    left join SchoolInfo    on SchoolInfo.schoolId=SchoolAddress.schoolId
+    where ReceiverAddress.userId=#{value} and isDefault='是' and ReceiverAddress.addressState='正常'
+  </select>
+  
+  <select id="findAllPaged" parameterType="ReceiverAddress" resultType="ReceiverAddress">
+    select ReceiverAddress.*,
+           UserInfo.userName,
+           SchoolAddress.addressName as schoolAddress,
+           SchoolInfo.SchoolId,SchoolInfo.schoolName
+    from ReceiverAddress
+    left join UserInfo      on UserInfo.userId=ReceiverAddress.userId
+    left join SchoolAddress on SchoolAddress.schoolAddressId=ReceiverAddress.schoolAddressId
+    left join SchoolInfo    on SchoolInfo.schoolId=SchoolAddress.schoolId
+    where 1=1 and ReceiverAddress.addressState='正常'
+    order by ${sortField} ${sortType}
+  </select>
+  
+  <select id="findById" parameterType="Long" resultType="ReceiverAddress">
+    select ReceiverAddress.*,
+           UserInfo.userName,
+           SchoolAddress.addressName as schoolAddress,
+           SchoolInfo.SchoolId,SchoolInfo.schoolName
+    from ReceiverAddress
+    left join UserInfo      on UserInfo.userId=ReceiverAddress.userId
+    left join SchoolAddress on SchoolAddress.schoolAddressId=ReceiverAddress.schoolAddressId
+    left join SchoolInfo    on SchoolInfo.schoolId=SchoolAddress.schoolId
+    where  receiverAddressId=#{id}
+  </select>
+  
+  <select id="findAllByField" parameterType="Map" resultType="ReceiverAddress">
+    select * from ReceiverAddress where ${fieldName}=#{fieldValue}
+  </select>
+ 
+  <insert id="insert" parameterType="ReceiverAddress" flushCache="true" useGeneratedKeys="true" keyProperty="receiverAddressId" >
+      insert into ReceiverAddress( userId, schoolAddressId, isDefault, detailAddress, receiverName, receiverMobile,addressState)
+      values(#{userId,jdbcType=NUMERIC},#{schoolAddressId,jdbcType=NUMERIC},#{isDefault,jdbcType=VARCHAR},#{detailAddress,jdbcType=VARCHAR},
+             #{receiverName,jdbcType=VARCHAR},#{receiverMobile,jdbcType=VARCHAR},#{addressState,jdbcType=VARCHAR})
+  </insert>
+  
+   <update id="update" parameterType="ReceiverAddress" >
+     update ReceiverAddress 
+     set  userId=#{userId,jdbcType=NUMERIC},  schoolAddressId=#{schoolAddressId,jdbcType=NUMERIC},  isDefault=#{isDefault,jdbcType=VARCHAR},  
+          detailAddress=#{detailAddress,jdbcType=VARCHAR},  receiverName=#{receiverName,jdbcType=VARCHAR},  
+          receiverMobile=#{receiverMobile,jdbcType=VARCHAR},
+          addressState=#{addressState,jdbcType=VARCHAR}
+     where receiverAddressId=#{receiverAddressId}
+  </update>
+  
+  <update id="updateDefault" parameterType="Map" >
+     update ReceiverAddress set isDefault='是' where receiverAddressId=#{receiverAddressId};
+     update ReceiverAddress set isDefault='否' where userId=#{userId} and receiverAddressId!=#{receiverAddressId};
+  </update>
+  
+  
+  
+  <delete id="deleteById" parameterType="long">
+      delete from ReceiverAddress where receiverAddressId=#{id}
+  </delete>
+  
+</mapper>

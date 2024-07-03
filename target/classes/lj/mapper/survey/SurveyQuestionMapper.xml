@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lj.mapper.survey.SurveyQuestionMapper">
+
+  <select id="findAll" resultType="SurveyQuestion">
+    select * from SurveyQuestion
+  </select>
+  
+  
+  
+  <select id="findAllByQuestionId" parameterType="Long" resultType="SurveyQuestion">
+    select * from SurveyQuestion where questionId=#{value}
+  </select>
+  
+  
+  
+  <select id="findAllByRequestObj" parameterType="SurveyQuestion" resultType="SurveyQuestion">
+    select SurveyQuestion.*
+    from SurveyQuestion
+    where 1=1
+    <if test="surveyId > 0">
+      and  SurveyQuestion.surveyId =  #{surveyId}
+    </if>
+  </select>
+ 
+  <select id="findAllPaged" parameterType="SurveyQuestion" resultType="SurveyQuestion">
+    select SurveyQuestion.* ,
+           QuestionInfo.questionTitle, QuestionInfo.questionType,
+           SurveyInfo.surveyTitle,
+           UserInfo.userName as opUserName
+    from SurveyQuestion
+    left join SurveyInfo on SurveyInfo.surveyId=SurveyQuestion.surveyId
+    left join QuestionInfo on QuestionInfo.questionId=SurveyQuestion.questionId
+    
+    left join UserInfo on UserInfo.userId=SurveyQuestion.opUserId
+    where 1=1
+    <if test="questionTitle!=null and questionTitle!='' ">
+      and  QuestionInfo.questionTitle like  '%${questionTitle}%'
+    </if>
+    <if test="surveyTitle!=null and surveyTitle!='' ">
+      and  SurveyInfo.surveyTitle like  '%${surveyTitle}%'
+    </if>
+    <if test="surveyId!=null and surveyId!='' ">
+      and  SurveyInfo.surveyId =  #{surveyId}
+    </if>
+    order by ${sortField} ${sortType}
+  </select>
+  
+  <select id="findById" parameterType="Long" resultType="SurveyQuestion">
+    select * from SurveyQuestion where  surveyQuestionId=#{id}
+  </select>
+  
+  <select id="findAllByField" parameterType="Map" resultType="SurveyQuestion">
+    select * from SurveyQuestion where ${fieldName}=#{fieldValue}
+  </select>
+ 
+  <insert id="insert" parameterType="SurveyQuestion" flushCache="true" useGeneratedKeys="true" keyProperty="surveyQuestionId" >
+      insert into SurveyQuestion( questionId, surveyId, opUserId, opTime)
+      values(#{questionId,jdbcType=NUMERIC},#{surveyId,jdbcType=NUMERIC},#{opUserId,jdbcType=NUMERIC},#{opTime,jdbcType=TIMESTAMP})
+  </insert>
+  
+   <update id="update" parameterType="SurveyQuestion" >
+     update SurveyQuestion 
+     set  questionId=#{questionId,jdbcType=NUMERIC},  surveyId=#{surveyId,jdbcType=NUMERIC},  opUserId=#{opUserId,jdbcType=NUMERIC},  opTime=#{opTime,jdbcType=TIMESTAMP}
+     where surveyQuestionId=#{surveyQuestionId}
+  </update>
+
+
+    <delete id="deleteById" parameterType="long">
+      delete from SurveyQuestion where surveyQuestionId=#{id}
+  </delete>
+  <delete id="deleteBySurveyId">
+    delete from SurveyQuestion where surveyId=#{id}
+  </delete>
+  <delete id="deleteByQuestionId">
+    delete from SurveyQuestion where questionId=#{id}
+  </delete>
+
+  <select id="findAllBySurveyId" parameterType="long" resultType="SurveyQuestion">
+    select *
+    from SurveyQuestion
+    where surveyId=#{surveyId}
+  </select>
+  
+</mapper>

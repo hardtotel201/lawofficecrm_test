@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lj.mapper.survey.QuestionItemMapper">
+
+  <select id="findAll" resultType="QuestionItem">
+    select * from QuestionItem
+  </select>
+  
+  <select id="findAllByRequestObj" parameterType="QuestionItem" resultType="QuestionItem">
+    select QuestionItem.* 
+    from QuestionItem
+    where 1=1
+  </select>
+ 
+  <select id="findAllPaged" parameterType="QuestionItem" resultType="QuestionItem">
+    select QuestionItem.*,QuestionInfo.questionTitle
+    from QuestionItem
+    left join QuestionInfo on QuestionInfo.questionId=QuestionItem.questionId
+    where 1=1
+    <if test="questionTitle!=null and questionTitle!='' ">
+      and  QuestionInfo.questionTitle like  '%${questionTitle}%'
+    </if>
+    <if test="itemIndex!=null and itemIndex!='' ">
+      and  QuestionItem.itemIndex =  #{itemIndex}
+    </if>
+    <if test="itemConent!=null and itemConent!='' ">
+      and  QuestionItem.itemConent like  '%${itemConent}%'
+    </if>
+    <if test="questionId!=null and questionId!='' ">
+      and  QuestionInfo.questionId =  #{questionId}
+    </if>
+    order by ${sortField} ${sortType}
+  </select>
+  
+  <select id="findById" parameterType="Long" resultType="QuestionItem">
+    select * from QuestionItem where  questionItemId=#{id}
+  </select>
+  
+  <select id="findAllByField" parameterType="Map" resultType="QuestionItem">
+    select * from QuestionItem where ${fieldName}=#{fieldValue}
+  </select>
+ 
+  <insert id="insert" parameterType="QuestionItem" flushCache="true" useGeneratedKeys="true" keyProperty="questionItemId" >
+      insert into QuestionItem( questionId, itemIndex, itemConent)
+      values(#{questionId,jdbcType=NUMERIC},#{itemIndex,jdbcType=NUMERIC},#{itemConent,jdbcType=VARCHAR})
+  </insert>
+  
+   <update id="update" parameterType="QuestionItem" >
+     update QuestionItem 
+     set  questionId=#{questionId,jdbcType=NUMERIC},  itemIndex=#{itemIndex,jdbcType=NUMERIC},  itemConent=#{itemConent,jdbcType=VARCHAR} 
+     where questionItemId=#{questionItemId}
+  </update>
+  
+  <delete id="deleteById" parameterType="long">
+      delete from QuestionItem where questionItemId=#{id}
+  </delete>
+  <delete id="deleteByQuestionId">
+    delete from QuestionItem where questionId=#{id}
+  </delete>
+
+  <select id="findByQuestionId" parameterType="long" resultType="QuestionItem">
+    select *
+    from QuestionItem
+    where questionId=#{questionId}
+  </select>
+  
+</mapper>

@@ -1,0 +1,42 @@
+2023-12-01 12:10:10 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-12-01 12:11:19 [http-nio-8081-exec-3] UncaughtExceptionAdvice.exceptionHandler::org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'leaglTime' in 'field list'
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientInfoMapper.xml]
+### The error may involve lj.mapper.client.ClientInfoMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into ClientInfo( clientName, clientWeixin, clientAddress, clientPhone, clientZipCode, clientContacts, clientType,                              clientEmail, clientAccount, clientBank, clientLevel, registerTime, clientMemo, clientState,                              sourceTable,sourceId,sourceMemo,opTime, opUserId,                              legalRepresentative, legalMoney, leaglTime, insuredNumber, businessScope,equityConstituent, parttimeMemo, biddingMemo, lawMemo)       values(?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?)
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'leaglTime' in 'field list'
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'leaglTime' in 'field list'
+2023-12-01 12:13:03 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-12-01 12:13:50 [http-nio-8081-exec-3] UncaughtExceptionAdvice.exceptionHandler::org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'legalTime' in 'class lj.model.client.ClientInfo'
+2023-12-01 12:15:45 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-12-01 12:29:15 [http-nio-8081-exec-9] UncaughtExceptionAdvice.exceptionHandler::org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`lawofficecrm_develop`.`clientassign`, CONSTRAINT `FK_Relationship_25` FOREIGN KEY (`clientId`) REFERENCES `clientinfo` (`clientId`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientInfoMapper.xml]
+### The error may involve lj.mapper.client.ClientInfoMapper.deleteById-Inline
+### The error occurred while setting parameters
+### SQL: delete from ClientInfo where clientId=?
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`lawofficecrm_develop`.`clientassign`, CONSTRAINT `FK_Relationship_25` FOREIGN KEY (`clientId`) REFERENCES `clientinfo` (`clientId`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+; Cannot delete or update a parent row: a foreign key constraint fails (`lawofficecrm_develop`.`clientassign`, CONSTRAINT `FK_Relationship_25` FOREIGN KEY (`clientId`) REFERENCES `clientinfo` (`clientId`) ON DELETE RESTRICT ON UPDATE RESTRICT); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`lawofficecrm_develop`.`clientassign`, CONSTRAINT `FK_Relationship_25` FOREIGN KEY (`clientId`) REFERENCES `clientinfo` (`clientId`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+2023-12-01 12:44:47 [http-nio-8081-exec-9] UncaughtExceptionAdvice.exceptionHandler::com.alibaba.excel.exception.ExcelDataConvertException: Convert data com.alibaba.excel.metadata.data.ReadCellData@2e702fa2 to class java.util.Date error 
+2023-12-01 12:44:53 [http-nio-8081-exec-2] UncaughtExceptionAdvice.exceptionHandler::com.alibaba.excel.exception.ExcelDataConvertException: Convert data com.alibaba.excel.metadata.data.ReadCellData@2e702fa2 to class java.util.Date error 
+2023-12-01 12:52:22 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-12-01 12:57:59 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-12-01 13:15:10 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-12-01 13:24:13 [http-nio-8081-exec-5] UncaughtExceptionAdvice.exceptionHandler::org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`lawofficecrm_develop`.`clientassign`, CONSTRAINT `FK_Relationship_25` FOREIGN KEY (`clientId`) REFERENCES `clientinfo` (`clientId`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientInfoMapper.xml]
+### The error may involve lj.mapper.client.ClientInfoMapper.deleteById-Inline
+### The error occurred while setting parameters
+### SQL: delete from ClientInfo where clientId=?
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`lawofficecrm_develop`.`clientassign`, CONSTRAINT `FK_Relationship_25` FOREIGN KEY (`clientId`) REFERENCES `clientinfo` (`clientId`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+; Cannot delete or update a parent row: a foreign key constraint fails (`lawofficecrm_develop`.`clientassign`, CONSTRAINT `FK_Relationship_25` FOREIGN KEY (`clientId`) REFERENCES `clientinfo` (`clientId`) ON DELETE RESTRICT ON UPDATE RESTRICT); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`lawofficecrm_develop`.`clientassign`, CONSTRAINT `FK_Relationship_25` FOREIGN KEY (`clientId`) REFERENCES `clientinfo` (`clientId`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+2023-12-01 13:24:23 [http-nio-8081-exec-10] UncaughtExceptionAdvice.exceptionHandler::org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`lawofficecrm_develop`.`clientassign`, CONSTRAINT `FK_Relationship_25` FOREIGN KEY (`clientId`) REFERENCES `clientinfo` (`clientId`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientInfoMapper.xml]
+### The error may involve lj.mapper.client.ClientInfoMapper.deleteById-Inline
+### The error occurred while setting parameters
+### SQL: delete from ClientInfo where clientId=?
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`lawofficecrm_develop`.`clientassign`, CONSTRAINT `FK_Relationship_25` FOREIGN KEY (`clientId`) REFERENCES `clientinfo` (`clientId`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+; Cannot delete or update a parent row: a foreign key constraint fails (`lawofficecrm_develop`.`clientassign`, CONSTRAINT `FK_Relationship_25` FOREIGN KEY (`clientId`) REFERENCES `clientinfo` (`clientId`) ON DELETE RESTRICT ON UPDATE RESTRICT); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`lawofficecrm_develop`.`clientassign`, CONSTRAINT `FK_Relationship_25` FOREIGN KEY (`clientId`) REFERENCES `clientinfo` (`clientId`) ON DELETE RESTRICT ON UPDATE RESTRICT)
+2023-12-01 13:26:41 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException

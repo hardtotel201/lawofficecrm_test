@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lj.mapper.user.UserRoleMapper">
+
+  <select id="findAll" resultType="UserRole">
+    select * from UserRole
+  </select>
+  
+  
+  <select id="findAllPaged" parameterType="UserRole" resultType="UserRole">
+    select UserRole.* ,(select roleName from RoleInfo where roleId=UserRole.roleId) as roleName
+    from UserRole
+    order by userRoleId
+  </select>
+  
+  <select id="find" parameterType="Long" resultType="UserRole">
+    select UserRole.* ,(select roleName from RoleInfo where roleId=UserRole.roleId) as roleName 
+    from UserRole where  userRoleId=#{id}
+  </select>
+  
+  <select id="findAllByField" parameterType="Map" resultType="UserRole">
+    select * 
+    from UserRole where ${fieldName}=#{fieldValue}
+  </select>
+  
+  <insert id="insert" parameterType="UserRole" flushCache="true" useGeneratedKeys="true" keyProperty="userRoleId">
+      insert into UserRole(roleId,userId)
+      values(#{roleId,jdbcType=NUMERIC},#{userId,jdbcType=NUMERIC})
+  </insert>
+  
+   <update id="update" parameterType="UserRole" >
+     update UserRole 
+     set userRoleId=#{userRoleId,jdbcType=NUMERIC},roleId=#{roleId,jdbcType=NUMERIC},userId=#{userId,jdbcType=NUMERIC}
+     where userRoleId=#{userRoleId}
+  </update>
+  
+  <delete id="deleteById" parameterType="long">
+      delete from UserRole where userRoleId=#{id}
+  </delete>
+  
+  <delete id="deleteByUserId" parameterType="long">
+      delete from UserRole where userId=#{id}
+  </delete>
+    
+  <select id="findAllByUserId" parameterType="Long" resultType="UserRole">
+		select UserRole.* ,(select roleName from RoleInfo where roleId=UserRole.roleId) as roleName 
+		from UserRole 
+		where userId=#{userId}
+  </select>
+  
+  <select id="findAllByUserIds" parameterType="String" resultType="UserRole">
+		select UserRole.* ,(select roleName from RoleInfo where roleId=UserRole.roleId) as roleName
+		from UserRole 
+		where userId in ( ${value} )
+  </select>
+  
+</mapper>

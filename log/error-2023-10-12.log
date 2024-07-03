@@ -1,0 +1,6 @@
+2023-10-12 10:26:54 [http-nio-8081-exec-2] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-10-12 20:44:04 [http-nio-8081-exec-2] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-10-12 20:57:06 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-10-12 21:02:54 [http-nio-8081-exec-9] FileInputController.uploadFiles:java.io.IOException: java.io.FileNotFoundException: /private/var/folders/p8/1jf5mrl96dv38nkfvwl7fc4m0000gn/T/tomcat.2822348865428813297.8081/work/Tomcat/localhost/lawofficecrm/D:\uploadloc/20231012210254002_0.docx (No such file or directory)
+2023-10-12 21:03:20 [http-nio-8081-exec-3] FileInputController.uploadFiles:java.io.IOException: java.io.FileNotFoundException: /private/var/folders/p8/1jf5mrl96dv38nkfvwl7fc4m0000gn/T/tomcat.2822348865428813297.8081/work/Tomcat/localhost/lawofficecrm/D:\uploadloc/20231012210320002_0.jpg (No such file or directory)
+2023-10-12 21:04:04 [http-nio-8081-exec-1] FileInputController.uploadFiles:java.io.IOException: java.io.FileNotFoundException: /private/var/folders/p8/1jf5mrl96dv38nkfvwl7fc4m0000gn/T/tomcat.2822348865428813297.8081/work/Tomcat/localhost/lawofficecrm/D:\uploadloc/20231012210404002_0.jpg (No such file or directory)

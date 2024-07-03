@@ -1,0 +1,4 @@
+2023-09-17 11:07:59 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-09-17 17:27:58 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-09-17 20:19:58 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-09-17 21:24:25 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lj.mapper.lawyer.LawyerInfoMapper">
+<select id="findAll" resultType="LawyerInfo"> select * from LawyerInfo </select>
+<select id="findAllByRequestObj" parameterType="LawyerInfo" resultType="LawyerInfo"> select LawyerInfo.* from LawyerInfo where 1=1 </select>
+<select id="findAllPaged" parameterType="LawyerInfo" resultType="LawyerInfo">
+select LawyerInfo.*,UserInfo.userName as opUserName from LawyerInfo left join UserInfo on UserInfo.userId=LawyerInfo.opUserId where 1=1
+<if test=" lawyerName!=null and lawyerName!='' "> and LawyerInfo.lawyerName like '%${lawyerName}%' </if>
+<if test=" lawyerPhone!=null and lawyerPhone!='' "> and LawyerInfo.lawyerPhone like '%${lawyerPhone}%' </if>
+<if test=" registerTimeBegin!=null"> and LawyerInfo.registerTime>#{registerTimeBegin} </if>
+<if test=" registerTimeEnd!=null"> and #{registerTimeEnd}>LawyerInfo.registerTime </if>
+order by ${sortField} ${sortType}
+</select>
+<select id="findById" parameterType="Long" resultType="LawyerInfo"> select * from LawyerInfo where lawyerId=#{id} </select>
+<select id="findAllByField" parameterType="Map" resultType="LawyerInfo"> select * from LawyerInfo where ${fieldName}=#{fieldValue} </select>
+<select id="findAllLawyers" resultType="LawyerInfo"> select LawyerInfo.* from LawyerInfo </select>
+<!--  使用now() 函数来获取当前时间  -->
+<select id="getNowTime" resultType="java.util.Date"> select now() </select>
+<insert id="insert" parameterType="LawyerInfo" flushCache="true" useGeneratedKeys="true" keyProperty="lawyerId"> insert into LawyerInfo( lawyerName, lawyerPhone, lawyerAddress, lawyerEmail,officeName,officeAddress, registerTime, lawyerState, opTime, opUserId) values(#{lawyerName,jdbcType=VARCHAR}, #{lawyerPhone,jdbcType=VARCHAR}, #{lawyerAddress,jdbcType=VARCHAR}, #{lawyerEmail,jdbcType=VARCHAR}, #{officeName,jdbcType=VARCHAR},  #{officeAddress,jdbcType=VARCHAR},#{registerTime,jdbcType=TIMESTAMP}, #{lawyerState,jdbcType=VARCHAR}, #{opTime,jdbcType=TIMESTAMP}, #{opUserId,jdbcType=NUMERIC}) </insert>
+<update id="update" parameterType="LawyerInfo"> update LawyerInfo set lawyerName=#{lawyerName,jdbcType=VARCHAR}, lawyerPhone=#{lawyerPhone,jdbcType=VARCHAR}, lawyerAddress=#{lawyerAddress,jdbcType=VARCHAR}, lawyerEmail=#{lawyerEmail,jdbcType=VARCHAR},officeName=#{officeName,jdbcType=VARCHAR},officeAddress=#{officeAddress,jdbcType=VARCHAR}, registerTime=#{registerTime,jdbcType=TIMESTAMP}, lawyerState=#{lawyerState,jdbcType=VARCHAR}, opTime=#{opTime,jdbcType=TIMESTAMP}, opUserId=#{opUserId,jdbcType=NUMERIC} where lawyerId=#{lawyerId} </update>
+<delete id="deleteById" parameterType="long"> delete from LawyerInfo where lawyerId=#{id} </delete>
+</mapper>

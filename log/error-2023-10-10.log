@@ -1,0 +1,2 @@
+2023-10-10 12:50:29 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-10-10 12:51:51 [http-nio-8081-exec-6] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException

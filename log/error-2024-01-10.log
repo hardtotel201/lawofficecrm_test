@@ -1,0 +1,266 @@
+2024-01-10 21:37:43 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2024-01-10 21:39:19 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2024-01-10 21:39:19 [http-nio-8081-exec-3] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2024-01-10 21:39:40 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2024-01-10 21:47:00 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2024-01-10 21:47:00 [http-nio-8081-exec-2] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2024-01-10 21:47:01 [http-nio-8081-exec-5] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2024-01-10 21:47:01 [http-nio-8081-exec-7] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2024-01-10 21:47:01 [http-nio-8081-exec-9] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2024-01-10 21:55:38 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2024-01-10 21:55:41 [http-nio-8081-exec-5] UncaughtExceptionAdvice.exceptionHandler::org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+' at line 9
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientInfoMapper.xml]
+### The error may involve lj.mapper.client.ClientInfoMapper.findAllPaged-Inline
+### The error occurred while setting parameters
+### SQL: select count(0) from (select ClientInfo.*, UserInfo.userName as opUserName     from ClientInfo     left join UserInfo on UserInfo.UserId=ClientInfo.opUserId           where 1=1                and MONTH(clientinfo.registerTime) = MONTH(CURRENT_DATE)         AND YEAR(clientinfo.registerTime) = YEAR(CURRENT_DATE);                                                                                                                                   order by registerTime desc) tmp_count
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+' at line 9
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+' at line 9
+2024-01-10 21:55:43 [http-nio-8081-exec-6] UncaughtExceptionAdvice.exceptionHandler::org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+' at line 9
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientInfoMapper.xml]
+### The error may involve lj.mapper.client.ClientInfoMapper.findAllPaged-Inline
+### The error occurred while setting parameters
+### SQL: select count(0) from (select ClientInfo.*, UserInfo.userName as opUserName     from ClientInfo     left join UserInfo on UserInfo.UserId=ClientInfo.opUserId           where 1=1                and MONTH(clientinfo.registerTime) = MONTH(CURRENT_DATE)         AND YEAR(clientinfo.registerTime) = YEAR(CURRENT_DATE);                                                                                                                                   order by registerTime desc) tmp_count
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+' at line 9
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+' at line 9
+2024-01-10 21:55:44 [http-nio-8081-exec-7] UncaughtExceptionAdvice.exceptionHandler::org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+' at line 9
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientInfoMapper.xml]
+### The error may involve lj.mapper.client.ClientInfoMapper.findAllPaged-Inline
+### The error occurred while setting parameters
+### SQL: select count(0) from (select ClientInfo.*, UserInfo.userName as opUserName     from ClientInfo     left join UserInfo on UserInfo.UserId=ClientInfo.opUserId           where 1=1                and MONTH(clientinfo.registerTime) = MONTH(CURRENT_DATE)         AND YEAR(clientinfo.registerTime) = YEAR(CURRENT_DATE);                                                                                                                                   order by registerTime desc) tmp_count
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+' at line 9
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+' at line 9
+2024-01-10 21:55:44 [http-nio-8081-exec-8] UncaughtExceptionAdvice.exceptionHandler::org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+' at line 9
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientInfoMapper.xml]
+### The error may involve lj.mapper.client.ClientInfoMapper.findAllPaged-Inline
+### The error occurred while setting parameters
+### SQL: select count(0) from (select ClientInfo.*, UserInfo.userName as opUserName     from ClientInfo     left join UserInfo on UserInfo.UserId=ClientInfo.opUserId           where 1=1                and MONTH(clientinfo.registerTime) = MONTH(CURRENT_DATE)         AND YEAR(clientinfo.registerTime) = YEAR(CURRENT_DATE);                                                                                                                                   order by registerTime desc) tmp_count
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+' at line 9
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+' at line 9
+2024-01-10 21:55:57 [http-nio-8081-exec-9] UncaughtExceptionAdvice.exceptionHandler::org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+' at line 9
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientInfoMapper.xml]
+### The error may involve lj.mapper.client.ClientInfoMapper.findAllPaged-Inline
+### The error occurred while setting parameters
+### SQL: select count(0) from (select ClientInfo.*, UserInfo.userName as opUserName     from ClientInfo     left join UserInfo on UserInfo.UserId=ClientInfo.opUserId           where 1=1                and MONTH(clientinfo.registerTime) = MONTH(CURRENT_DATE)         AND YEAR(clientinfo.registerTime) = YEAR(CURRENT_DATE);                                                                                                                                   order by registerTime desc) tmp_count
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+' at line 9
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+' at line 9
+2024-01-10 21:57:01 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2024-01-10 22:08:15 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2024-01-10 22:20:16 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2024-01-10 22:20:18 [http-nio-8081-exec-5] UncaughtExceptionAdvice.exceptionHandler::org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'isQueryMonthTransacted30' in 'class lj.model.client.ClientInfo'
+2024-01-10 22:21:34 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2024-01-10 22:27:36 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException

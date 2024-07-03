@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lj.mapper.sys.ModuleInfoMapper">
+	<select id="findAll" resultType="ModuleInfo">
+		select * from ModuleInfo
+	</select>
+
+	<select id="findAllParentModules" resultType="ModuleInfo">
+		select * from
+		ModuleInfo where parentModuleId is null order by moduleCode
+	</select>
+
+	<select id="findAllChildModules" parameterType="Long"
+		resultType="ModuleInfo">
+		select * from ModuleInfo where
+		parentModuleId=#{parentModuleId} order by moduleCode
+	</select>
+
+	<select id="findAllPaged" parameterType="ModuleInfo"
+		resultType="ModuleInfo">
+		select ModuleInfo.*,
+		       parentModule.moduleTitle as parentModuleTitle 
+		from ModuleInfo
+		left join ModuleInfo parentModule on parentModule.moduleId=ModuleInfo.parentModuleId
+		where 1=1
+		<if test=" parentModuleId!=null ">
+			and ModuleInfo.parentModuleId=#{parentModuleId}
+		</if>
+		<if test=" moduleTitle!=null and moduleTitle!='' ">
+		    and ModuleInfo.moduleTitle   like '%${moduleTitle}%'
+	   </if>
+		order by ModuleInfo.moduleCode
+	</select>
+
+	<select id="countChildModules" parameterType="Long" resultType="Integer">
+		select
+		count(*) from ModuleInfo where parentModuleId=#{parentModuleId}
+	</select>
+
+	<insert id="insert" parameterType="ModuleInfo" flushCache="true">
+		insert into
+		ModuleInfo(parentModuleId,moduleName,moduleCode,moduleTitle,moduleKind,moduleUrl,moduleIcon)
+		values(#{parentModuleId,jdbcType=NUMERIC},#{moduleName,jdbcType=VARCHAR},
+		       #{moduleCode,jdbcType=VARCHAR},#{moduleTitle,jdbcType=VARCHAR},   #{moduleKind,jdbcType=VARCHAR},
+		       #{moduleUrl,jdbcType=VARCHAR},#{moduleIcon,jdbcType=VARCHAR})
+	</insert>
+	
+	<update id="update"  parameterType="ModuleInfo" >
+	    update ModuleInfo set 
+	    parentModuleId=#{parentModuleId,jdbcType=NUMERIC},moduleName=#{moduleName,jdbcType=VARCHAR},
+	    moduleCode=#{moduleCode,jdbcType=VARCHAR},        moduleTitle=#{moduleTitle,jdbcType=VARCHAR},      
+	    moduleKind=#{moduleKind,jdbcType=VARCHAR},        moduleUrl=#{moduleUrl,jdbcType=VARCHAR},
+	    moduleIcon=#{moduleIcon,jdbcType=VARCHAR}
+	    where moduleId=#{moduleId,jdbcType=NUMERIC}
+	</update>
+	
+	 <delete id="deleteById" parameterType="long">
+      delete from ModuleInfo where moduleId=#{id}
+     </delete>
+
+</mapper>

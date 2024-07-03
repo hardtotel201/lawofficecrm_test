@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lj.mapper.lawcase.CaseInfoMapper">
+
+  <select id="findAll" resultType="CaseInfo">
+    select * from CaseInfo
+  </select>
+  
+  <select id="findAllByRequestObj" parameterType="CaseInfo" resultType="CaseInfo">
+    select CaseInfo.* 
+    from CaseInfo
+    where 1=1
+  </select>
+
+  <select id="findAllPaged" parameterType="CaseInfo" resultType="CaseInfo">
+    select CaseInfo.*,
+           UserInfo.userName as opUserName,
+           other.userName as userName,
+           LawyerInfo.lawyerName as lawyerName,
+           ClientInfo.clientName as clientName
+    from CaseInfo
+    left join UserInfo on UserInfo.userId=CaseInfo.opUserId
+    left join UserInfo other on other.UserId=CaseInfo.UserId
+    left join LawyerInfo on LawyerInfo.lawyerId=CaseInfo.lawyerId
+    left join ClientInfo on ClientInfo.clientId=CaseInfo.clientId
+    <if test=" clientId!=null and clientId!='' ">
+      Inner join ClientInfo on ClientInfo.clientId=CaseInfo.clientId and ClientInfo.clientId in ( ${clientId} )
+    </if>
+    <if test=" userId!=null and userId!='' ">
+      Inner join UserInfo on UserInfo.userId=CaseInfo.userId and UserInfo.userId in ( ${userId} )
+    </if>
+     where 1=1
+    <if test=" clientName!=null and clientName!='' ">
+      and ClientInfo.clientName  like '%${clientName}%'
+    </if>
+    <if test=" caseCode!=null and caseCode!='' ">
+      and CaseInfo.caseCode   like '%${caseCode}%'
+    </if>
+    <if test=" caseName!=null and caseName!='' ">
+      and CaseInfo.caseName   like '%${caseName}%'
+    </if>
+    <if test=" lawyerName!=null and lawyerName!='' "> 
+    and LawyerInfo.lawyerName like '%${lawyerName}%' 
+    </if>
+    order by ${sortField} ${sortType}
+  </select>
+  
+  <select id="findById" parameterType="Long" resultType="lj.model.lawcase.CaseInfo">
+    select CaseInfo.*,
+           UserInfo.userName as opUserName,
+           other.userName as userName,
+           LawyerInfo.lawyerName as lawyerName,
+           ClientInfo.clientName as clientName
+    from CaseInfo
+           left join UserInfo on UserInfo.userId=CaseInfo.opUserId
+           left join UserInfo other on other.UserId=CaseInfo.UserId
+           left join LawyerInfo on LawyerInfo.lawyerId=CaseInfo.lawyerId
+           left join ClientInfo on ClientInfo.clientId=CaseInfo.clientId
+    where  caseId=#{id}
+  </select>
+  
+  <select id="findAllByField" parameterType="Map" resultType="CaseInfo">
+    select * from CaseInfo where ${fieldName}=#{fieldValue}
+  </select>
+ 
+  <insert id="insert" parameterType="CaseInfo" flushCache="true" useGeneratedKeys="true" keyProperty="caseId" >
+      insert into CaseInfo( userId, lawyerId, clientId, caseCode,
+                           caseName, caseType, caseConent, caseSource,
+                           casePrice, lawyerFee, feeType, payType, acceptTime,
+                           contractCode, caseState, opTime, opUserId,
+                           caseProgram,otherClient,casePhrase,predealMatters,
+                           dealUnit,dealJudge)
+      values(#{userId,jdbcType=NUMERIC},#{lawyerId,jdbcType=NUMERIC},
+             #{clientId,jdbcType=NUMERIC},#{caseCode,jdbcType=VARCHAR},
+             #{caseName,jdbcType=VARCHAR},#{caseType,jdbcType=VARCHAR},
+             #{caseConent,jdbcType=VARCHAR},#{caseSource,jdbcType=VARCHAR},
+             #{casePrice,jdbcType=NUMERIC},#{lawyerFee,jdbcType=NUMERIC},
+             #{feeType,jdbcType=VARCHAR},#{payType,jdbcType=VARCHAR},
+             #{acceptTime,jdbcType=TIMESTAMP},#{contractCode,jdbcType=VARCHAR},
+             #{caseState,jdbcType=VARCHAR},#{opTime,jdbcType=TIMESTAMP},
+             #{opUserId,jdbcType=NUMERIC},#{caseProgram,jdbcType=VARCHAR},
+             #{otherClient,jdbcType=VARCHAR},#{casePhrase,jdbcType=VARCHAR},
+             #{predealMatters,jdbcType=VARCHAR},#{dealUnit,jdbcType=VARCHAR},
+             #{dealJudge,jdbcType=VARCHAR})
+  </insert>
+
+    <select id="getNowTime" resultType="java.util.Date">
+        select now()
+    </select>
+
+   <update id="update" parameterType="CaseInfo" >
+     update CaseInfo 
+     set  userId=#{userId,jdbcType=NUMERIC},
+          lawyerId=#{lawyerId,jdbcType=NUMERIC},
+          clientId=#{clientId,jdbcType=NUMERIC},
+          caseCode=#{caseCode,jdbcType=VARCHAR},
+          caseName=#{caseName,jdbcType=VARCHAR},
+          caseType=#{caseType,jdbcType=VARCHAR},
+          caseConent=#{caseConent,jdbcType=VARCHAR},
+          caseSource=#{caseSource,jdbcType=VARCHAR},
+          casePrice=#{casePrice,jdbcType=NUMERIC},
+          lawyerFee=#{lawyerFee,jdbcType=NUMERIC},
+          feeType=#{feeType,jdbcType=VARCHAR},
+          payType=#{payType,jdbcType=VARCHAR},
+          acceptTime=#{acceptTime,jdbcType=TIMESTAMP},
+          contractCode=#{contractCode,jdbcType=VARCHAR},
+          caseState=#{caseState,jdbcType=VARCHAR},
+          opTime=#{opTime,jdbcType=TIMESTAMP},
+          opUserId=#{opUserId,jdbcType=NUMERIC},
+          caseProgram=#{caseProgram,jdbcType=VARCHAR},
+          otherClient=#{otherClient,jdbcType=VARCHAR},
+          casePhrase=#{casePhrase,jdbcType=VARCHAR},
+          predealMatters=#{predealMatters,jdbcType=VARCHAR},
+          dealUnit=#{dealUnit,jdbcType=VARCHAR},
+          dealJudge=#{dealJudge,jdbcType=VARCHAR}
+     where caseId=#{caseId}
+  </update>
+  
+  <delete id="deleteById" parameterType="long">
+      delete from CaseInfo where caseId=#{id}
+  </delete>
+  
+</mapper>

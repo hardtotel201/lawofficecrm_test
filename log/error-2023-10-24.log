@@ -1,0 +1,8 @@
+2023-10-24 09:40:35 [http-nio-8081-exec-5] UncaughtExceptionAdvice.exceptionHandler::org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dsc) tmp_count' at line 15
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientAssignMapper.xml]
+### The error may involve lj.mapper.client.ClientAssignMapper.findAllPaged-Inline
+### The error occurred while setting parameters
+### SQL: select count(0) from (select ClientAssign.*, UserInfo.userName as userName, ClientInfo.clientName as clientName, other.userName as assignUserName     from ClientAssign     left join UserInfo on UserInfo.UserId=ClientAssign.userId     left join ClientInfo on ClientInfo.ClientId=ClientAssign.clientId     left join UserInfo other on other.UserId=ClientAssign.assignUserId     where 1=1                                                      order by assignTime dsc) tmp_count
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dsc) tmp_count' at line 15
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dsc) tmp_count' at line 15

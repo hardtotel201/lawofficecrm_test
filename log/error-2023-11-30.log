@@ -1,0 +1,49 @@
+2023-11-30 16:37:20 [http-nio-8081-exec-10] UncaughtExceptionAdvice.exceptionHandler::org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.NullPointerException
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientInfoMapper.xml]
+### The error may involve lj.mapper.client.ClientInfoMapper.findAllPaged_COUNT
+### The error occurred while handling results
+### SQL: SELECT count(0) FROM ClientInfo LEFT JOIN UserInfo ON UserInfo.UserId = ClientInfo.opUserId WHERE 1 = 1 AND ClientInfo.clientId NOT IN (SELECT clientId FROM ClientFollow)
+### Cause: java.lang.NullPointerException
+2023-11-30 16:40:05 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-11-30 16:40:07 [http-nio-8081-exec-4] UncaughtExceptionAdvice.exceptionHandler::org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.NullPointerException
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientInfoMapper.xml]
+### The error may involve lj.mapper.client.ClientInfoMapper.findAllPaged_COUNT
+### The error occurred while handling results
+### SQL: SELECT count(0) FROM ClientInfo LEFT JOIN UserInfo ON UserInfo.UserId = ClientInfo.opUserId WHERE 1 = 1 AND ClientInfo.clientId NOT IN (SELECT clientId FROM ClientFollow)
+### Cause: java.lang.NullPointerException
+2023-11-30 16:40:18 [http-nio-8081-exec-9] UncaughtExceptionAdvice.exceptionHandler::org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.NullPointerException
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientInfoMapper.xml]
+### The error may involve lj.mapper.client.ClientInfoMapper.findAllPaged_COUNT
+### The error occurred while handling results
+### SQL: SELECT count(0) FROM ClientInfo LEFT JOIN UserInfo ON UserInfo.UserId = ClientInfo.opUserId WHERE 1 = 1 AND ClientInfo.clientId NOT IN (SELECT clientId FROM ClientFollow)
+### Cause: java.lang.NullPointerException
+2023-11-30 16:40:18 [http-nio-8081-exec-10] UncaughtExceptionAdvice.exceptionHandler::org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.NullPointerException
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientInfoMapper.xml]
+### The error may involve lj.mapper.client.ClientInfoMapper.findAllPaged_COUNT
+### The error occurred while handling results
+### SQL: SELECT count(0) FROM ClientInfo LEFT JOIN UserInfo ON UserInfo.UserId = ClientInfo.opUserId WHERE 1 = 1 AND ClientInfo.clientId NOT IN (SELECT clientId FROM ClientFollow)
+### Cause: java.lang.NullPointerException
+2023-11-30 16:40:19 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.NullPointerException
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientInfoMapper.xml]
+### The error may involve lj.mapper.client.ClientInfoMapper.findAllPaged_COUNT
+### The error occurred while handling results
+### SQL: SELECT count(0) FROM ClientInfo LEFT JOIN UserInfo ON UserInfo.UserId = ClientInfo.opUserId WHERE 1 = 1 AND ClientInfo.clientId NOT IN (SELECT clientId FROM ClientFollow)
+### Cause: java.lang.NullPointerException
+2023-11-30 16:43:16 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-11-30 16:46:20 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-11-30 16:46:23 [http-nio-8081-exec-5] UncaughtExceptionAdvice.exceptionHandler::org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.NullPointerException
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientInfoMapper.xml]
+### The error may involve lj.mapper.client.ClientInfoMapper.findAllPaged_COUNT
+### The error occurred while handling results
+### SQL: SELECT count(0) FROM ClientInfo LEFT JOIN UserInfo ON UserInfo.UserId = ClientInfo.opUserId WHERE 1 = 1 AND ClientInfo.clientId NOT IN (SELECT clientId FROM ClientFollow)
+### Cause: java.lang.NullPointerException
+2023-11-30 17:04:31 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-11-30 17:04:57 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-11-30 17:06:41 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2023-11-30 17:11:58 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lj.mapper.client.ClientRevisitMapper">
+
+  <select id="findAll" resultType="ClientRevisit">
+    select * from ClientRevisit
+  </select>
+  
+  <select id="findAllByRequestObj" parameterType="ClientRevisit" resultType="ClientRevisit">
+    select ClientRevisit.* 
+    from ClientRevisit
+    where 1=1
+  </select>
+ 
+  <select id="findAllPaged" parameterType="ClientRevisit" resultType="ClientRevisit">
+    select ClientRevisit.* , ClientInfo.clientName as clientName, UserInfo.userName as opUserName
+    from ClientRevisit
+    left join ClientInfo on ClientInfo.ClientId=ClientRevisit.ClientId
+    left join UserInfo on UserInfo.UserId=ClientRevisit.opUserId
+    where 1=1
+    <if test=" clientId!=null and clientId>0 ">
+      and ClientRevisit.clientId=#{clientId}
+    </if>
+    <if test=" clientName!=null and clientName!='' ">
+      and ClientInfo.clientName   like '%${clientName}%'
+    </if>
+    <if test=" revisitType!=null and revisitType!='' ">
+      and ClientRevisit.revisitType   like '%${revisitType}%'
+    </if>
+    <if test=" revisitTimeSpan!=null and revisitTimeSpan!='' ">
+      and ClientRevisit.revisitTimeSpan   like '%${revisitTimeSpan}%'
+    </if>
+    <if test=" revisitConent!=null and revisitConent!='' ">
+      and ClientRevisit.revisitConent   like '%${revisitConent}%'
+    </if>
+    <if test=" revisitTimeBegin!=null">
+      and ClientRevisit.revisitTime>#{revisitTimeBegin}
+    </if>
+    <if test=" revisitTimeEnd!=null">
+      and #{revisitTimeEnd}>ClientRevisit.revisitTime
+    </if>
+    order by ${sortField} ${sortType}
+  </select>
+  
+  <select id="findById" parameterType="Long" resultType="ClientRevisit">
+    select * from ClientRevisit where  clientRevisitId=#{id}
+  </select>
+  
+  <select id="findAllByField" parameterType="Map" resultType="ClientRevisit">
+    select * from ClientRevisit where ${fieldName}=#{fieldValue}
+  </select>
+
+  <select id="getNowTime" resultType="java.util.Date">
+        select now()
+  </select>
+
+  <insert id="insert" parameterType="ClientRevisit" flushCache="true" useGeneratedKeys="true" keyProperty="clientRevisitId" >
+      insert into ClientRevisit( clientId, revisitType, revisitTime, revisitTimeSpan, revisitConent, fileName, opTime, opUserId)
+      values(#{clientId,jdbcType=NUMERIC},#{revisitType,jdbcType=VARCHAR},#{revisitTime,jdbcType=TIMESTAMP},#{revisitTimeSpan,jdbcType=NUMERIC},#{revisitConent,jdbcType=VARCHAR},#{fileName,jdbcType=VARCHAR},#{opTime,jdbcType=TIMESTAMP},#{opUserId,jdbcType=NUMERIC})
+  </insert>
+  
+   <update id="update" parameterType="ClientRevisit" >
+     update ClientRevisit 
+     set  clientId=#{clientId,jdbcType=NUMERIC},  revisitType=#{revisitType,jdbcType=VARCHAR},  revisitTime=#{revisitTime,jdbcType=TIMESTAMP},  revisitTimeSpan=#{revisitTimeSpan,jdbcType=NUMERIC},  revisitConent=#{revisitConent,jdbcType=VARCHAR},  fileName=#{fileName,jdbcType=VARCHAR},  opTime=#{opTime,jdbcType=TIMESTAMP},  opUserId=#{opUserId,jdbcType=NUMERIC}
+     where clientRevisitId=#{clientRevisitId}
+  </update>
+  
+  <delete id="deleteById" parameterType="long">
+      delete from ClientRevisit where clientRevisitId=#{id}
+  </delete>
+  
+</mapper>

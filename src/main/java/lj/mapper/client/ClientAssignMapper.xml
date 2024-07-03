@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lj.mapper.client.ClientAssignMapper">
+
+  <select id="findAll" resultType="ClientAssign">
+    select * from ClientAssign
+  </select>
+  
+  <select id="findAllByRequestObj" parameterType="ClientAssign" resultType="ClientAssign">
+    select ClientAssign.* 
+    from ClientAssign
+    where 1=1
+    <if test=" userId!=null and userId>0 ">
+      and ClientAssign.userId=#{userId}
+    </if>
+     <if test=" clientId!=null and clientId>0 ">
+      and ClientAssign.clientId=#{clientId}
+    </if>
+     <if test=" assignUserId!=null">
+      and ClientAssign.assignUserId=#{assignUserId}
+    </if>
+  </select>
+ 
+  <select id="findAllPaged" parameterType="ClientAssign" resultType="ClientAssign">
+    select ClientAssign.*, UserInfo.userName as userName, ClientInfo.clientName as clientName, other.userName as assignUserName
+    from ClientAssign
+    left join UserInfo on UserInfo.UserId=ClientAssign.userId
+    left join ClientInfo on ClientInfo.ClientId=ClientAssign.clientId
+    left join UserInfo other on other.UserId=ClientAssign.assignUserId
+    where 1=1
+    <if test=" userId!=null and userId>0 ">
+      and ClientAssign.userId=#{userId}
+    </if>
+    <if test=" userName!=null and userName!='' ">
+      and UserInfo.userName  like '%${userName}%'
+    </if>
+     <if test=" clientId!=null and clientId>0 ">
+      and ClientAssign.clientId=#{clientId}
+    </if>
+    <if test=" clientName!=null and clientName!='' ">
+      and ClientInfo.clientName  like '%${clientName}%'
+    </if>
+    <if test=" assignUserName!=null and assignUserName!='' ">
+      and other.userName  like '%${assignUserName}%'
+    </if>
+    <if test=" assignUserId!=null">
+      and ClientAssign.assignUserId=#{assignUserId}
+    </if>
+    <if test=" assignTimeBegin!=null">
+      and ClientAssign.assignTime>#{assignTimeBegin}
+    </if>
+    <if test=" assignTimeEnd!=null">
+      and #{assignTimeEnd}>ClientAssign.assignTime
+    </if>
+    order by ${sortField} ${sortType}
+  </select>
+  
+  <select id="findById" parameterType="Long" resultType="ClientAssign">
+    select * from ClientAssign where  clientAssignId=#{id}
+  </select>
+  
+  <select id="findAllByField" parameterType="Map" resultType="ClientAssign">
+    select * from ClientAssign where ${fieldName}=#{fieldValue}
+  </select>
+
+  <select id="getNowTime" resultType="java.util.Date">
+    select now()
+  </select>
+
+
+  <insert id="insert" parameterType="ClientAssign" flushCache="true" useGeneratedKeys="true" keyProperty="clientAssignId" >
+      insert into ClientAssign( userId, clientId, assignUserId, assignTime)
+      values(#{userId,jdbcType=NUMERIC},
+             #{clientId,jdbcType=NUMERIC},
+             #{assignUserId,jdbcType=NUMERIC},
+             #{assignTime,jdbcType=TIMESTAMP})
+  </insert>
+  
+   <update id="update" parameterType="ClientAssign" >
+     update ClientAssign 
+     set  userId=#{userId,jdbcType=NUMERIC},  clientId=#{clientId,jdbcType=NUMERIC},  assignUserId=#{assignUserId,jdbcType=NUMERIC},  assignTime=#{assignTime,jdbcType=TIMESTAMP} 
+     where clientAssignId=#{clientAssignId}
+  </update>
+  
+  <delete id="deleteById" parameterType="long">
+      delete from ClientAssign where clientAssignId=#{id}
+  </delete>
+  
+</mapper>

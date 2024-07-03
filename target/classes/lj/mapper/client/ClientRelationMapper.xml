@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="lj.mapper.client.ClientRelationMapper">
+
+  <select id="findAll" resultType="ClientRelation">
+    select * from ClientRelation
+  </select>
+  
+  <select id="findAllByRequestObj" parameterType="ClientRelation" resultType="ClientRelation">
+    select ClientRelation.* 
+    from ClientRelation
+    where 1=1
+  </select>
+ 
+  <select id="findAllPaged" parameterType="ClientRelation" resultType="ClientRelation">
+    select ClientRelation.*,ClientInfo.clientName as clientName1,other.clientName as clientName2
+    from ClientRelation
+    left join ClientInfo on ClientInfo.ClientId=ClientRelation.clientId1
+    left join ClientInfo other on other.ClientId=ClientRelation.clientId2
+    where 1=1
+    <if test=" clientName!=null and clientName!='' ">
+      and ClientInfo.clientName like '%${clientName}%'
+      or other.clientName like '%${clientName}%'
+    </if>
+    <if test=" relationType!=null and relationType!='' ">
+      and ClientRelation.relationType like '%${relationType}%'
+    </if>
+    <if test=" relationContent!=null and relationContent!='' ">
+      and ClientRelation.relationContent like '%${relationContent}%'
+    </if>
+    <if test=" queryClientId!=null and queryClientId>0 ">
+      and ( ClientRelation.clientId1=#{queryClientId} or ClientRelation.clientId2=#{queryClientId} )
+    </if>
+    order by ${sortField} ${sortType}
+  </select>
+  
+  <select id="findById" parameterType="Long" resultType="ClientRelation">
+    select ClientRelation.*,ClientInfo.clientName as clientName1,other.clientName as clientName2
+    from ClientRelation
+    left join ClientInfo on ClientInfo.ClientId=ClientRelation.clientId1
+    left join ClientInfo other on other.ClientId=ClientRelation.clientId2
+    where clientRelationId=#{clientId}
+    order by ${sortField} ${sortType}
+  </select>
+  
+  <select id="findAllByField" parameterType="Map" resultType="ClientRelation">
+    select * from ClientRelation where ${fieldName}=#{fieldValue}
+  </select>
+
+  <insert id="insert" parameterType="ClientRelation" flushCache="true" useGeneratedKeys="true" keyProperty="clientRelationId" >
+      insert into ClientRelation( clientId1,clientId2, relationType, relationContent)
+      values(#{clientId1,jdbcType=NUMERIC},#{clientId2,jdbcType=NUMERIC},
+             #{relationType,jdbcType=VARCHAR},#{relationContent,jdbcType=VARCHAR})
+  </insert>
+  
+   <update id="update" parameterType="ClientRelation" >
+     update ClientRelation 
+     set  clientId1=#{clientId1,jdbcType=NUMERIC},  clientId2=#{clientId2,jdbcType=NUMERIC},
+          relationType=#{relationType,jdbcType=VARCHAR},  relationContent=#{relationContent,jdbcType=VARCHAR} 
+     where clientRelationId=#{clientRelationId}
+  </update>
+  
+  <delete id="deleteById" parameterType="long">
+      delete from ClientRelation where clientRelationId=#{id}
+  </delete>
+  
+</mapper>

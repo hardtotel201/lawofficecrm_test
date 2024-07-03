@@ -1,0 +1,22 @@
+2024-01-11 22:28:42 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2024-01-11 22:54:54 [http-nio-8081-exec-10] UncaughtExceptionAdvice.exceptionHandler::org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''',
+             ''' at line 33
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientInfoMapper.xml]
+### The error may involve lj.mapper.client.ClientInfoMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into ClientInfo( clientName, clientWeixin, clientAddress, clientPhone, clientZipCode, clientContacts, clientType,                              clientEmail, clientAccount, clientBank, clientLevel, registerTime, clientMemo, clientState,                              sourceTable,sourceId,sourceMemo,opTime, opUserId,                              legalRepresentative, legalMoney, legalTime, insuredNumber, businessScope,equityConstituent, parttimeMemo, biddingMemo, lawMemo, ceo, ceoPhone)       values(?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?),              ?,              ?
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''',
+             ''' at line 33
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''',
+             ''' at line 33
+2024-01-11 23:00:16 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
+2024-01-11 23:00:43 [http-nio-8081-exec-8] UncaughtExceptionAdvice.exceptionHandler::org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 34
+### The error may exist in file [/Users/chengwenhao/Desktop/Project/Idea/lawofficecrm/target/classes/lj/mapper/client/ClientInfoMapper.xml]
+### The error may involve lj.mapper.client.ClientInfoMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into ClientInfo( clientName, clientWeixin, clientAddress, clientPhone, clientZipCode, clientContacts, clientType,                              clientEmail, clientAccount, clientBank, clientLevel, registerTime, clientMemo, clientState,                              sourceTable,sourceId,sourceMemo,opTime, opUserId,                              legalRepresentative, legalMoney, legalTime, insuredNumber, businessScope,equityConstituent, parttimeMemo, biddingMemo, lawMemo, ceo, ceoPhone)       values(?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?,              ?
+### Cause: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 34
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 34
+2024-01-11 23:01:58 [http-nio-8081-exec-1] UncaughtExceptionAdvice.exceptionHandler::lj.exception.user.AuthorizationException
