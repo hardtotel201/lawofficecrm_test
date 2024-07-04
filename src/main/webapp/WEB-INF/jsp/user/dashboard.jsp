@@ -8,7 +8,7 @@
     flex-grow: 1;
 }
 </style>
-
+<input type="hidden" id="userId" value="${loginUserId}" />
 <button id="signInBtn" class="btn btn-primary">签到</button>
 
 <div class="row">
@@ -242,16 +242,16 @@
 <!-- </div> -->
 <script>
 
-
+	var userId = ${loginUserId};
 	$(function () {
-		$("#signInBtn").click(function(){
+		$("#signInBtn").click(function() {
 			$.ajax({
 				url: "../user/signIn",
 				type: "POST",
 				contentType: "application/json",
-				data: JSON.stringify({ userId: "用户ID" }), // 替换为实际的用户ID
-				success: function(response) {
-					alert(response);
+				data: JSON.stringify({ userId: userId }), // 假设userId是已经获取的用户ID
+				success: function(data) {
+					alert(data);
 				},
 				error: function(xhr, status, error) {
 					alert("签到失败");

@@ -8,6 +8,8 @@
     flex-grow: 1;
 }
 </style>
+<input type="hidden" id="userId" value="${loginUserId}" />
+<button id="signInBtn" class="btn btn-primary">签到</button>
 
 <div class="row">
 	<div class="col-sm-4">
@@ -240,8 +242,25 @@
 <!-- </div> -->
 <script>
 
-
+	var userId = ${loginUserId};
 	$(function () {
+		$("#signInBtn").click(function() {
+			$.ajax({
+				url: "../user/signIn",
+				type: "POST",
+				contentType: "application/json",
+				data: JSON.stringify({ userId: userId }), // 假设userId是已经获取的用户ID
+				success: function(data) {
+					alert(data);
+				},
+				error: function(xhr, status, error) {
+					console.log("状态码: " + xhr.status);
+					console.log("响应文本: " + xhr.responseText);
+					alert("签到失败");
+				}
+			});
+		});
+
        $("#btnMonthNew").click(function(){
     	   showPageContent("../client/clientBasicPage/monthNew","客户信息");
        });

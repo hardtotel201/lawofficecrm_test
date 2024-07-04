@@ -1,11 +1,15 @@
 package lj.service.user;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,6 +43,11 @@ public class UserInfoService extends BaseService {
 
 	@Autowired
 	private UserRoleService userRoleService=null;
+
+	@Autowired
+	private RedisTemplate<String, String> redisTemplate;
+
+	private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
 
 	
 	/**
@@ -312,7 +321,8 @@ public class UserInfoService extends BaseService {
 	/**
 	 * APP功能：用户注册
 	 * 
-	 * @param userMobile
+	 * @param userWeixin
+	 * @param roleId
 	 * @return
 	 */
 	@Transactional
@@ -387,7 +397,8 @@ public class UserInfoService extends BaseService {
 	/**
 	 * APP功能：用户注册
 	 * 
-	 * @param userMobile
+	 * @param userInfo
+	 * @param roleId
 	 * @return
 	 */
 	@Transactional
@@ -443,6 +454,27 @@ public class UserInfoService extends BaseService {
 //		else
 //			return "注册用户失败!";
 //	}
+
+	/**
+	 * 用户签到
+	 * @param userId
+	 * @return
+	 */
+	public boolean signIn(long userId) {
+		String key = "signIn:" + userId;
+		String value = LocalDate.now().format(dtf);
+		System.out.println("key: " + key + ", value: " + value);
+		if(redisTemplate.opsForValue().get(key) != null) {
+			System.out.println(redisTemplate.opsForValue().get(key));
+			return false; // 已签到
+		} else {
+			redisTemplate.opsForValue().set(key, value);
+			return true; // 签到成功
+		}
+	}
+
+
+
 
 	/**
 	 * 根据用户手机查询用户信息

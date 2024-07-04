@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import lj.service.user.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +37,9 @@ public class DashboardController extends BaseController {
 	
 	@Autowired
 	private SumClientService sumClientService=null;
+
+	@Autowired
+	private UserInfoService userInfoService=null;
 	
     /**
      * 进入用户看板页面
@@ -52,7 +56,7 @@ public class DashboardController extends BaseController {
 		requestModel.setIsRightJoinClientAssign(isJoin);
 		long loginUserId=this.getLoginUserId(req);
 		requestModel.setLoginUserId(loginUserId);
-		
+		model.addAttribute("loginUserId",loginUserId);
 		// 2-分页查询数据
 		//2.1-查询待跟进
 		requestModel.setSortField("registerTime");
@@ -98,6 +102,27 @@ public class DashboardController extends BaseController {
 		System.out.println("DashboardController.dashboard() pageUnrevisit:"+pageUnrevisit.getTotal()+" "+lj.util.JsonUtils.objectToJson(pageUnrevisit));
 		return "user/dashboard";
 	}
+
+	/**
+	 * 签到
+	 * @param req
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = { "/signIn" })
+	public @ResponseBody String signIn(HttpServletRequest req,Model model) {
+		Long userId = this.getLoginUser(req).getUserId();
+		boolean result = userInfoService.signIn(userId);
+		System.out.println("DashboardController.signIn() is requested");
+		if(result) {
+			System.out.println("DashboardController.signIn() success");
+			return "success";
+		} else {
+			System.out.println("DashboardController.signIn() failed");
+			return "今日已签到";
+		}
+	}
+
 	
 	@RequestMapping(value = { "/sumClientsByMonth" })
 	public @ResponseBody List<SumByString> sumClientsByMonth(HttpServletRequest req,Model model) {
