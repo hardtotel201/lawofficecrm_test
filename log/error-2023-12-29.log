@@ -1,2 +1,0 @@
-2023-12-29 10:47:21 [http-nio-8081-exec-8] UncaughtExceptionAdvice.exceptionHandler::org.apache.catalina.connector.ClientAbortException: java.io.IOException: Broken pipe
-2023-12-29 10:47:24 [http-nio-8081-exec-3] UncaughtExceptionAdvice.exceptionHandler::org.apache.catalina.connector.ClientAbortException: java.io.IOException: Broken pipe
