@@ -47,7 +47,7 @@ public class UserInfoService extends BaseService {
 	@Autowired
 	private RedisTemplate<String, String> redisTemplate;
 
-	private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
+	private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 
 	/**
