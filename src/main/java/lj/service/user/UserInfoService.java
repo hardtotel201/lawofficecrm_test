@@ -49,7 +49,7 @@ public class UserInfoService extends BaseService {
 
 	private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMdd");
 
-	
+
 	/**
 	 * 分页查询
 	 * @param reqModel
@@ -104,7 +104,7 @@ public class UserInfoService extends BaseService {
 
 	/**
 	 * 登陆
-	 * 
+	 *
 	 * @param userCode
 	 * @param userPassword
 	 * @return
@@ -153,7 +153,6 @@ public class UserInfoService extends BaseService {
 	 * 新增用户信息
 	 * 
 	 * @param newUserInfo
-	 * @param opUserId
 	 * @return
 	 */
 	public String insertUserInfo(UserInfo newUserInfo) {
@@ -247,7 +246,7 @@ public class UserInfoService extends BaseService {
 	/**
 	 * 删除用户信息
 	 * 
-	 * @param groupId
+	 * @param userId
 	 * @return
 	 */
 	public String deleteUserInfo(long userId) {
@@ -258,7 +257,8 @@ public class UserInfoService extends BaseService {
 	/**
 	 * 注销用户信息
 	 * 
-	 * @param groupId
+	 * @param userId
+	 * @param opUserId
 	 * @return
 	 */
 	public String writeoffUserInfo(long userId, long opUserId) {
@@ -285,7 +285,8 @@ public class UserInfoService extends BaseService {
 	/**
 	 * APP功能：用户注册
 	 * 
-	 * @param userMobile
+	 * @param userInfo
+	 * @param roleId
 	 * @return
 	 */
 	@Transactional
@@ -472,6 +473,7 @@ public class UserInfoService extends BaseService {
 			return true; // 签到成功
 		}
 	}
+
 
 
 
