@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,7 +46,7 @@ public class UserInfoService extends BaseService {
 	private UserRoleService userRoleService=null;
 
 	@Autowired
-	private RedisTemplate<String, String> redisTemplate;
+	private StringRedisTemplate redisTemplate;
 
 	private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
@@ -463,14 +464,19 @@ public class UserInfoService extends BaseService {
 	 */
 	public boolean signIn(long userId) {
 		String key = "signIn:" + userId;
-		String value = LocalDate.now().format(dtf);
-		System.out.println("key: " + key + ", value: " + value);
-		if(redisTemplate.opsForValue().get(key) != null) {
-			System.out.println(redisTemplate.opsForValue().get(key));
-			return false; // 已签到
+		String currentDate = LocalDate.now().format(dtf);
+		long currentTimestamp = System.currentTimeMillis();
+		System.out.println("key: " + key + ", currentDate: " + currentDate);
+
+		// 检查当天是否已经签到
+		boolean isMember = redisTemplate.opsForZSet().score(key, currentDate) != null;
+		if (isMember) {
+			System.out.println("User has already signed in today: " + currentDate);
+			return false; // 用户今天已经签到
 		} else {
-			redisTemplate.opsForValue().set(key, value);
-			return true; // 签到成功
+			// 将当前日期添加到有序集合中
+			redisTemplate.opsForZSet().add(key, currentDate, currentTimestamp);
+			return true; // 新的一天签到成功
 		}
 	}
 
