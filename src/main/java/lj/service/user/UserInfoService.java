@@ -466,6 +466,7 @@ public class UserInfoService extends BaseService {
 		String key = "signIn:" + userId;
 		String currentDate = LocalDate.now().format(dtf);
 		long currentTimestamp = System.currentTimeMillis();
+
 		System.out.println("key: " + key + ", currentDate: " + currentDate);
 
 		// 检查当天是否已经签到
