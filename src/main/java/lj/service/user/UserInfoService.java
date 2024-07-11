@@ -463,7 +463,7 @@ public class UserInfoService extends BaseService {
 	 * @return
 	 */
 	public boolean signIn(long userId) {
-		String key = "signIn:" + userId;
+		String key = "signIn:" + userId;	// t
 		String currentDate = LocalDate.now().format(dtf);
 		long currentTimestamp = System.currentTimeMillis();
 		System.out.println("key: " + key + ", currentDate: " + currentDate);
